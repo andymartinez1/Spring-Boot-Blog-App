@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http:///www.thymeleaf.org">
-  <div th:replace="admin/header :: header"></div>
+  <div th:replace="~{admin/header :: header}"></div>
 
   <body>
-    <div th:replace="admin/header :: navbar"></div>
+    <div th:replace="~{admin/header :: navbar}"></div>
     <div class="container">
       <div class="row">
         <h1>Blog Post List</h1>
@@ -27,6 +27,7 @@
         </tbody>
       </table>
     </div>
-    <div th:replace="admin/footer :: footer"></div>
+    <br /><br /><br /><br /><br /><br />
+    <div th:replace="~{admin/footer :: footer}"></div>
   </body>
 </html>
