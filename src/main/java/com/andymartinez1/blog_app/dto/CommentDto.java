@@ -1,5 +1,7 @@
 package com.andymartinez1.blog_app.dto;
 
+import com.andymartinez1.blog_app.entity.Post;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,27 +9,27 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class PostDto {
+public class CommentDto {
 
     private Long id;
 
-    @NotEmpty(message = "Title is required")
-    private String title;
-    private String url;
+    @NotEmpty(message = "Name is required")
+    private String name;
+
+    @NotEmpty(message = "Email is required")
+    @Email
+    private String email;
 
     @NotEmpty(message = "Content is required")
     private String content;
 
-    @NotEmpty(message = "Short description is required")
-    private String shortDescription;
     private LocalDateTime createdOn;
     private LocalDateTime updatedOn;
-    private Set<CommentDto> comments;
 
+    private Post post;
 }
