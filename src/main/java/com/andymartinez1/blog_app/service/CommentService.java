@@ -1,8 +1,8 @@
 package com.andymartinez1.blog_app.service;
 
-import com.andymartinez1.blog_app.dto.CommentDto;
-
 import java.util.List;
+
+import com.andymartinez1.blog_app.dto.CommentDto;
 
 public interface CommentService {
 
@@ -11,4 +11,6 @@ public interface CommentService {
     List<CommentDto> findAllComments();
 
     void deleteComment(Long commentId);
+
+    List<CommentDto> findCommentsByPost();
 }

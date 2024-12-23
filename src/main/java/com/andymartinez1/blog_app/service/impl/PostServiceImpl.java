@@ -1,22 +1,28 @@
 package com.andymartinez1.blog_app.service.impl;
 
-import com.andymartinez1.blog_app.dto.PostDto;
-import com.andymartinez1.blog_app.entity.Post;
-import com.andymartinez1.blog_app.mapper.PostMapper;
-import com.andymartinez1.blog_app.repository.PostRepository;
-import com.andymartinez1.blog_app.service.PostService;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.andymartinez1.blog_app.dto.PostDto;
+import com.andymartinez1.blog_app.entity.Post;
+import com.andymartinez1.blog_app.entity.User;
+import com.andymartinez1.blog_app.mapper.PostMapper;
+import com.andymartinez1.blog_app.repository.PostRepository;
+import com.andymartinez1.blog_app.repository.UserRepository;
+import com.andymartinez1.blog_app.service.PostService;
+import com.andymartinez1.blog_app.util.SecurityUtils;
 
 @Service
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+    private UserRepository userRepository;
 
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
@@ -28,8 +34,21 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<PostDto> findPostsByUser() {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User createdBy = userRepository.findByEmail(email);
+        Long userId = createdBy.getId();
+        List<Post> posts = postRepository.findPostsByUser(userId);
+        return posts.stream().map((post) -> PostMapper.mapToPostDto(post))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public void createPost(PostDto postDto) {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User user = userRepository.findByEmail(email);
         Post post = PostMapper.mapToPost(postDto);
+        post.setCreatedBy(user);
         postRepository.save(post);
     }
 
@@ -41,7 +60,10 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void updatePost(PostDto postDto) {
+        String email = SecurityUtils.getCurrentUser().getUsername();
+        User createdBy = userRepository.findByEmail(email);
         Post post = PostMapper.mapToPost(postDto);
+        post.setCreatedBy(createdBy);
         postRepository.save(post);
     }
 

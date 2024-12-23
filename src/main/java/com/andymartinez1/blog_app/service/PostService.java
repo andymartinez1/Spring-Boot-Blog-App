@@ -1,12 +1,14 @@
 package com.andymartinez1.blog_app.service;
 
-import com.andymartinez1.blog_app.dto.PostDto;
-
 import java.util.List;
+
+import com.andymartinez1.blog_app.dto.PostDto;
 
 public interface PostService {
 
     List<PostDto> findAllPosts();
+
+    List<PostDto> findPostsByUser();
 
     void createPost(PostDto postDto);
 

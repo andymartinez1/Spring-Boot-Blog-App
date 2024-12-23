@@ -1,15 +1,16 @@
 package com.andymartinez1.blog_app.controller;
 
-import com.andymartinez1.blog_app.dto.CommentDto;
-import com.andymartinez1.blog_app.dto.PostDto;
-import com.andymartinez1.blog_app.service.PostService;
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
+import com.andymartinez1.blog_app.dto.CommentDto;
+import com.andymartinez1.blog_app.dto.PostDto;
+import com.andymartinez1.blog_app.service.PostService;
 
 @Controller
 public class BlogController {

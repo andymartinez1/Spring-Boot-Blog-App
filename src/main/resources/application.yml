@@ -13,3 +13,10 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
+
+  security:
+    user:
+      name: user
+      password: user
+      roles:
+        - GUEST

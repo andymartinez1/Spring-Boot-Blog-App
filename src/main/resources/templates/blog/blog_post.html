@@ -6,7 +6,7 @@
     <div th:replace="~{blog/header :: navbar}"></div>
     <br />
 
-    <div class="content">
+    <main class="main">
       <div class="container">
         <div class="row">
           <div class="col-md-9">
@@ -43,10 +43,10 @@
                 </div>
                 <div class="card-body">
                   <form
-                    th:action="@{/{postUrl}/comments(postUrl=${post.url})}"
-                    th:object="${comment}"
                     role="form"
                     method="post"
+                    th:action="@{/{postUrl}/comments(postUrl=${post.url})}"
+                    th:object="${comment}"
                   >
                     <div class="row">
                       <div class="col-md-5 mb-3">
@@ -116,7 +116,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </main>
 
     <br /><br /><br />
     <div th:replace="~{blog/footer :: footer}"></div>

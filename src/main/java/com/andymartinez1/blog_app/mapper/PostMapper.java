@@ -1,9 +1,9 @@
 package com.andymartinez1.blog_app.mapper;
 
+import java.util.stream.Collectors;
+
 import com.andymartinez1.blog_app.dto.PostDto;
 import com.andymartinez1.blog_app.entity.Post;
-
-import java.util.stream.Collectors;
 
 public class PostMapper {
 
